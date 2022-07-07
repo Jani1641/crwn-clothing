@@ -23,6 +23,10 @@ const App = () => {
   //check an id is already present in local storage
   // if not available , then create cart
 
+  useEffect(() => {
+
+  }, [])
+
 
   useEffect(() => {
   const unsubscribe = onAuthStateChangedListener((user) => {
