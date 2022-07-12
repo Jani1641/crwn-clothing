@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectCartItems } from '../../store/cart/cart.selector';
-import { addItemToCart } from '../../store/cart/cart.action';
+import { addItemToCart, addToCartItemsAsync } from '../../store/cart/cart.action';
 
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
@@ -12,18 +12,21 @@ import {
   Price,
 } from './product-card.styles';
 
-const ProductCard = ({ product }) => {
-  const { name, price, imageUrl } = product;
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
 
-  const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
+
+const ProductCard = ({ product }) => {
+  const { id,title, price, imageUrl } = product;
+  const dispatch = useDispatch();
+
+  const addProductToCart = (event) => {
+    dispatch(addToCartItemsAsync(id,1));
+  }
 
   return (
     <ProductCartContainer>
-      <img src={imageUrl} alt={`${name}`} />
+      <img src={imageUrl} alt={`${title}`} />
       <Footer>
-        <Name>{name}</Name>
+        <Name>{title}</Name>
         <Price>{price}</Price>
       </Footer>
       <Button

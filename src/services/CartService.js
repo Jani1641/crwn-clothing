@@ -8,20 +8,17 @@ class CartService{
         return axios.post(CARTS_URL,{});
     }
 
-    addToCart = (orderId,product) => {
-        return axios.put(CARTS_URL+'/'+orderId+'products',product)
+    addToCart = (orderId,productId,quantity) => {
+        console.log(`${CARTS_URL}/${orderId}/products?product_id=${productId}&quantity=${quantity}`)
+        return axios.put(`${CARTS_URL}/${orderId}/products?product_id=${productId}&quantity=${quantity}`)
     }
 
     deleteItemFromCart = (orderId,productId) => {
         return axios.delete(CARTS_URL+"/"+orderId+'/products/'+productId);
     }
 
-
-
-    
-
     updateInCart = (orderId,productId,quantity) => {
-        return axios.put(CARTS_URL+'/'+orderId+'/products/'+productId,quantity)
+        return axios.put(`${CARTS_URL}/${orderId}/products/${productId}?quantity=${quantity}`)
     }
 
     getCart = (orderId) => {

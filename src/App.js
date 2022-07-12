@@ -8,25 +8,33 @@ import { useEffect } from 'react';
 import { setCurrentUser } from './store/user/user.action';
 import {useDispatch} from 'react-redux'
 
+import CartService from './services/CartService';
+import { fetchCartItemsAsync } from './store/cart/cart.action';
+
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from './utils/firebase/firebase.utils';
 
+const orderId =  JSON.parse(localStorage.getItem('orderId'));
+    
 
 const App = () => {
   const dispatch = useDispatch();
-
-
   //useEffect to create cart - returns order-id
   //store the order id in local storage
   //check an id is already present in local storage
   // if not available , then create cart
-
-  useEffect(() => {
-
-  }, [])
-
+  useEffect(()=>{
+    if(!orderId){
+      CartService.createCart()
+      .then((response)=>{
+        localStorage.setItem('orderId',JSON.stringify(response.data['id']))
+      })
+    }else{
+      dispatch(fetchCartItemsAsync());
+    }
+  },[orderId]);
 
   useEffect(() => {
   const unsubscribe = onAuthStateChangedListener((user) => {
@@ -45,7 +53,7 @@ const App = () => {
         <Route index element={<Home />}/>
         <Route path='shop/*' element={<Shop/>}/>
         <Route path='auth' element={<Authetication/>}/>
-        <Route path = 'checkout' element={<Checkout/>}/>
+        <Route path = 'cart' element={<Checkout/>}/>
       </Route>
     </Routes>
   )

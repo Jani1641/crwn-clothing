@@ -1,6 +1,5 @@
 import { useSelector,useDispatch } from 'react-redux/es/exports';
-import { selectCartItems } from '../../store/cart/cart.selector';
-import { addItemToCart,clearItemFromCart,removeItemFromCart } from '../../store/cart/cart.action';
+import { addToCartItemsAsync,deleteCartItemsAsync, updateCartItemsAsync } from '../../store/cart/cart.action';
 
 import {
   CheckoutItemContainer,
@@ -14,18 +13,17 @@ import {
 
 const CheckoutItem = ({ cartItem }) => {
   const dispatch = useDispatch();
-  const { name, imageUrl, price, quantity } = cartItem;
-  const cartItems = useSelector(selectCartItems);
-  const clearItemHandler = () => dispatch(clearItemFromCart(cartItems,cartItem));
-  const addItemHandler = () => dispatch(addItemToCart(cartItems,cartItem));
-  const removeItemHandler = () => dispatch(removeItemFromCart(cartItems,cartItem));
+  const { id,title, imageUrl, price, quantity } = cartItem;
+  const clearItemHandler = () => dispatch(deleteCartItemsAsync(id));
+  const addItemHandler = () => dispatch(addToCartItemsAsync(id,1));
+  const removeItemHandler = () => dispatch(updateCartItemsAsync(id,quantity-1));
 
   return (
     <CheckoutItemContainer>
       <ImageContainer>
-        <img src={imageUrl} alt={`${name}`} />
+        <img src={imageUrl} alt={`${title}`} />
       </ImageContainer>
-      <BaseSpan> {name} </BaseSpan>
+      <BaseSpan> {title} </BaseSpan>
       <Quantity>
         <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
         <Value>{quantity}</Value>
