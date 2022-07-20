@@ -27,7 +27,7 @@ const ProfileDropdown = () => {
       {
         currentUser ? (
             <NavLinks>
-              <NavLink to='/recent-orders' >RECENT ORDERS</NavLink>
+              <NavLink to='/recent-orders' onClick={handleSignIn}>RECENT ORDERS</NavLink>
               <NavLink to='/' onClick={handleSignOut}>SIGN OUT</NavLink>
             </NavLinks>
         ):(

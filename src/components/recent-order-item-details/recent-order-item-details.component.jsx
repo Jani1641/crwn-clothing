@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux";
 import { selectCheckoutIsLoading } from "../../store/checkout/checkout.selector";
-import { Fragment } from "react";
 import Spinner from "../spinner/spinner.component";
 import RecentProductCard from "../recent-product/recent-product.component";
 import {Title,CategoryContainer} from "./recent-order-item-details.styles"
+import { RecentOrderDetailsContainer } from "./recent-order-item-details.styles";
 
 
 const RecentOrderDetails = ({details}) => {
     const isLoading = useSelector(selectCheckoutIsLoading);
     return (
-      <Fragment>
-        <Title>Items:</Title>
+      <RecentOrderDetailsContainer>
+        <Title>ITEMS:</Title>
         {
           isLoading ? (<Spinner/>) :
           <CategoryContainer>
@@ -20,7 +20,7 @@ const RecentOrderDetails = ({details}) => {
               ))}
           </CategoryContainer>
         }
-      </Fragment>
+      </RecentOrderDetailsContainer>
     );
   };
   

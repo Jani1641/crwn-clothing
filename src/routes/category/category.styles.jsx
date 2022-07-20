@@ -12,4 +12,5 @@ export const Title = styled.h2`
   margin-bottom: 25px;
   text-align: center;
   text-decoration: underline;
+  font-weight: bolder;
 `

@@ -1,4 +1,4 @@
-import { useSelector,useDispatch } from 'react-redux/es/exports';
+import { useDispatch } from 'react-redux/es/exports';
 import { addToCartItemsAsync,deleteCartItemsAsync, updateCartItemsAsync } from '../../store/cart/cart.action';
 
 import {
@@ -29,7 +29,7 @@ const CheckoutItem = ({ cartItem }) => {
         <Value>{quantity}</Value>
         <Arrow onClick={addItemHandler}>&#10095;</Arrow>
       </Quantity>
-      <BaseSpan> {price}</BaseSpan>
+      <BaseSpan> &#x20b9;{price}</BaseSpan>
       <RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );

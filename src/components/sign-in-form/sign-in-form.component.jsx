@@ -13,6 +13,7 @@ import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
 import { setDisplayName } from '../../store/user/user.action';
 import { fetchRecentItemsAsync } from '../../store/checkout/checkout.action';
 import { useNavigate } from 'react-router-dom';
+import { Head } from './sign-in-form.styles';
 
 const defaultFormFields = {
   email: '',
@@ -63,7 +64,7 @@ const SignInForm = () => {
 
   return (
     <SignInContainer>
-      <h2>Already have an account?</h2>
+      <Head>Already have an account?</Head>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput

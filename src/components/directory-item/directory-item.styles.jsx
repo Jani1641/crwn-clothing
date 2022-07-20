@@ -15,7 +15,8 @@ export const Body = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border-radius: 5px;
   background-color: white;
   opacity: 0.7;
   position: absolute;
@@ -31,6 +32,7 @@ export const Body = styled.div`
   p {
     font-weight: lighter;
     font-size: 16px;
+    margin: 0px;
   }
 `;
 
@@ -41,10 +43,15 @@ export const DirectoryItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  box-shadow: 0 0 2px #ccc;
   margin: 0 7.5px 15px;
   overflow: hidden;
-
+  border-radius: 5px;
+  .img{
+    width: 70%;
+  }
   &:first-child {
     margin-right: 7.5px;
   }
@@ -55,6 +62,7 @@ export const DirectoryItemContainer = styled.div`
 
   &:hover {
     cursor: pointer;
+    border-color: blue;
 
     ${BackgroundImage} {
       transform: scale(1.1);

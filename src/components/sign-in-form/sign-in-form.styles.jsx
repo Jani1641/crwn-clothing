@@ -14,3 +14,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const Head = styled.h2`
+  font-weight: bolder;
+`

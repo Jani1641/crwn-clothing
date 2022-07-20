@@ -8,7 +8,7 @@ export const CartIconContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
+  font-weight: bolder;
   svg {
     width: 24px;
     height: 24px;
@@ -18,6 +18,7 @@ export const CartIconContainer = styled.div`
 export const ItemCount = styled.span`
   position: absolute;
   font-size: 10px;
-  font-weight: bold;
+  font-weight: bolder;
   bottom: 12px;
+  color: white;
 `;

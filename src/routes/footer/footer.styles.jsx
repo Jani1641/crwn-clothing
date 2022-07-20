@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
 export const Box = styled.div`
-padding: 0px 30px;
-background-color: darkblue;
+padding: 20px 30px;
+background-color: navy;
 position:relative;
 width: 100%;
-margin: 20px;
-
+/* margin: 20px; */
 `;
 
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	max-width: 1000px;
+	width: 100%;
 	margin: 0 auto;
 	/* background: red; */
 `
@@ -21,14 +20,16 @@ export const Container = styled.div`
 export const Column = styled.div`
 display: flex;
 flex-direction: column;
+align-items: center;
 text-align: left;
-margin-left: 60px;
+margin-left: 20px;
+padding: 10px ;
 `;
 
 export const Row = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-between;
+justify-content: space-around;
 `;
 
 export const FooterLink = styled.a`
@@ -46,7 +47,7 @@ text-decoration: none;
 export const Heading = styled.p`
 font-size: 24px;
 color: #fff;
-margin-bottom: 40px;
+margin-bottom: 20px;
 font-weight: bold;
 `;
 

@@ -11,7 +11,7 @@ const SummaryCart = () => {
     const summayIsLoading = useSelector(selectCartIsLoading);
     return(
         <SummaryCartContainer>
-        <h1> Order Items</h1>
+        <h2> Order Items:</h2>
         {
             summayIsLoading ? (<Spinner/>) :
             (<CartItems>
@@ -20,9 +20,9 @@ const SummaryCart = () => {
                     ) : (
                         <EmptyMessage>Your checkout is empty</EmptyMessage>
                     )}
-                </CartItems>)
+            </CartItems>)
         }
-        <h1> Total : &#x20b9;{cartTotal}</h1>
+        <h2> Total : &#x20b9;{cartTotal}</h2>
         </SummaryCartContainer>
     )
 }

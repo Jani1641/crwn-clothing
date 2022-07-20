@@ -1,4 +1,4 @@
-import { ProductCartContainer,Footer,Name,Price,Quantity } from "./recent-product.styles";
+import { ProductCartContainer,Footer,Name,Price,Quantity,Item } from "./recent-product.styles";
 
 const RecentProductCard = ({ product }) => {
     const {title, price, imageUrl,quantity } = product;
@@ -8,8 +8,10 @@ const RecentProductCard = ({ product }) => {
         <img src={imageUrl} alt={`${title}`} />
         <Footer>
           <Name>{title}</Name>
-          <Price>&#x20b9;{price}</Price>
-          <Quantity>Quantity:{quantity}</Quantity>
+          <Item>
+            <Price>&#x20b9;{price}</Price>
+            <Quantity>Quantity:{quantity}</Quantity>
+          </Item>
         </Footer>
       </ProductCartContainer>
     );

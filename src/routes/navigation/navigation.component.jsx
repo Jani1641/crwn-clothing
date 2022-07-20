@@ -20,6 +20,8 @@ import {
 } from './navigation.styles';
 import ProfileDropdown from '../../components/profile-dropdown/profile-dropdown.component';
 import Footer from '../footer/footer.component';
+import { BodyContainer } from './navigation.styles';
+
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -34,10 +36,10 @@ const Navigation = () => {
       <NavigationContainer>
         <LogoContainer to='/'>
           <CrwnLogo className='logo' />
+          <h2>CRWN STORE</h2>
         </LogoContainer>
         <NavLinks>
           <NavLink to='/shop'>SHOP</NavLink>
-          
           {
             currentUser ? (
             <NavLink as='span' onClick={toggleIsProfileOpen}>
@@ -52,7 +54,9 @@ const Navigation = () => {
         </NavLinks>
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
-      <Outlet />
+      <BodyContainer>
+        <Outlet />
+      </BodyContainer>
       <Footer/>
     </Fragment>
   );

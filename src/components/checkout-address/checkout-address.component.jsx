@@ -40,7 +40,7 @@ const AddressContainer = () => {
 
     return(
         <AddressForm >
-            <h1>Enter your address:</h1>
+            <h2>Enter your address:</h2>
             <form onSubmit={handleSubmit}>
                 <FormInput
                     label='First Name'

@@ -8,6 +8,11 @@ export const CategoryContainer = styled.div`
 `
 
 export const Title = styled.h2`
-  font-size: 25px;
+  font-size: 15px;
   margin-bottom: 25px;
+  font-weight: bold;
 `
+
+export const RecentOrderDetailsContainer= styled.div`
+  padding: 20px;
+`;

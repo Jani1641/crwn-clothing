@@ -5,14 +5,17 @@ export const CheckoutItemContainer = styled.div`
   display: flex;
   min-height: 100px;
   border-bottom: 1px solid darkgrey;
+  border-radius: 5px;
   padding: 15px 0;
-  font-size: 20px;
+  font-size: 16px;
   align-items: center;
+  background-color: white;
 `;
 
 export const ImageContainer = styled.div`
   width: 23%;
-  padding-right: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
 
   img {
     width: 100%;
@@ -26,6 +29,7 @@ export const BaseSpan = styled.span`
 
 export const Quantity = styled(BaseSpan)`
   display: flex;
+  width: 21%;
 `;
 
 export const Arrow = styled.div`

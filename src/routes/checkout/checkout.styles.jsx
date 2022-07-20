@@ -7,19 +7,33 @@ export const CheckoutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+
+  Button{
+    margin-top: 10px;
+    background-color: navy;
+    border-radius: 10px;
+
+    &:hover{
+      opacity: 0.85;
+      display: flex;
+      color: white;
+      background-color: black;
+    }
+  }
 `;
 
 export const CheckoutHeader = styled.div`
   width: 100%;
-  padding: 10px 0;
+  padding: 25px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid darkgrey;
 `;
 
 export const HeaderBlock = styled.div`
   text-transform: capitalize;
-  width: 23%;
+  width: 20%;
 
   &:last-child {
     width: 8%;

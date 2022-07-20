@@ -5,10 +5,10 @@ export const SummaryCartContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  background-color: white;
-  margin: 15px;
+  background-color: #f1f1f1;
+  margin: 30px;
   h2{
-    text-align: center;
+    margin: 20px;
   }
 `;
 
