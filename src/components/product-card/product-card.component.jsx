@@ -26,8 +26,8 @@ const ProductCard = ({ product }) => {
     <ProductCartContainer>
       <img src={imageUrl} alt={`${title}`} />
       <Footer>
+        <Price>&#x20b9;{price}</Price>
         <Name>{title}</Name>
-        <Price>{price}</Price>
       </Footer>
       <Button
         buttonType={BUTTON_TYPE_CLASSES.inverted}

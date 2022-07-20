@@ -2,7 +2,6 @@ import CartService from '../../services/CartService';
 import { createAction } from '../../utils/reducer/reducer.utils';
 import { CART_ACTION_TYPES } from './cart.types';
 
-const orderid = JSON.parse(localStorage.getItem('orderId'));
 
 export const setIsCartOpen = (boolean) =>
   createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
@@ -22,6 +21,7 @@ export const fetchCartItemsError = (error) => {
 export const fetchCartItemsAsync = () =>async(dispatch) => {
   dispatch(fetchCartItemsStart());
   try{
+    const orderid = JSON.parse(localStorage.getItem('orderId'));
     const cartItems = await CartService.getCart(orderid);
     dispatch(fetchCartItemsSuccess(cartItems.data['items']));
   }catch(error){
@@ -32,6 +32,7 @@ export const fetchCartItemsAsync = () =>async(dispatch) => {
 export const addToCartItemsAsync = (prodId,quan=1) => async (dispatch) => {
   dispatch(fetchCartItemsStart());
   try{
+    const orderid = JSON.parse(localStorage.getItem('orderId'));
     const response = await CartService.addToCart(orderid,prodId,quan);
     const cartItems = await CartService.getCart(orderid);
     dispatch(fetchCartItemsSuccess(cartItems.data['items']));
@@ -42,6 +43,7 @@ export const addToCartItemsAsync = (prodId,quan=1) => async (dispatch) => {
 export const updateCartItemsAsync = (prodId,quan) => async (dispatch) => {
   dispatch(fetchCartItemsStart());
   try{
+    const orderid = JSON.parse(localStorage.getItem('orderId'));
     const response = await CartService.updateInCart(orderid,prodId,quan);
     const cartItems = await CartService.getCart(orderid);
     dispatch(fetchCartItemsSuccess(cartItems.data['items']));
@@ -52,6 +54,7 @@ export const updateCartItemsAsync = (prodId,quan) => async (dispatch) => {
 export const deleteCartItemsAsync = (prodId) => async (dispatch) => {
   dispatch(fetchCartItemsStart());
   try{
+    const orderid = JSON.parse(localStorage.getItem('orderId'));
     const response = await CartService.deleteItemFromCart(orderid,prodId);
     const cartItems = await CartService.getCart(orderid);
     dispatch(fetchCartItemsSuccess(cartItems.data['items']));
@@ -63,6 +66,7 @@ export const deleteCartItemsAsync = (prodId) => async (dispatch) => {
 export const deleteCartAsync = () => async (dispatch) =>{
   dispatch(fetchCartItemsStart());
   try{
+    const orderid = JSON.parse(localStorage.getItem('orderId'));
     const response = await CartService.deleteCart(orderid);
     dispatch(fetchCartItemsSuccess([]));
     localStorage.removeItem('orderId');

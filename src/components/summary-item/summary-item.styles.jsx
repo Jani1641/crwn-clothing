@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const CartItemContainer = styled.div`
+export const SummaryItemContainer = styled.div`
   width: 100%;
   display: flex;
-  height: 140px;
+  height: 120px;
   margin-bottom: 15px;
 
   img {

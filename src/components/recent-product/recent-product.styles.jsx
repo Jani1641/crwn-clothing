@@ -4,7 +4,7 @@ export const ProductCartContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 410px;
+  height: 420px;
   align-items: center;
   position: relative;
   border: solid 1px black;
@@ -12,7 +12,7 @@ export const ProductCartContainer = styled.div`
   img {
     padding: 5px;
     width: 100%;
-    height: 80%;
+    height: 75%;
     object-fit: cover;
     margin-bottom: 5px;
   }
@@ -26,12 +26,8 @@ export const ProductCartContainer = styled.div`
   }
 
   &:hover {
-    border: solid red 2px;
-
     img {
-      opacity: 0.8; 
-      transform: scale(1.1);
-      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+      opacity: 0.8;
     }
 
     button {
@@ -60,6 +56,13 @@ export const Price = styled.span`
   width: 100%;
   color: orange;
   text-align: center;
-  font-weight: bolder;
-  font-size: 25px;
+  font-weight: bold;
 `;
+
+export const Quantity = styled.span`
+  width: 100%;
+  color: orange;
+  text-align: center;
+  font-weight: bold;
+`;
+

@@ -1,27 +1,34 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
-import { selectCurrentUser } from '../../store/user/user.selector';
+import { selectCurrentUser, selectDisplayName, selectIsProfileOpen } from '../../store/user/user.selector';
 import { selectIsCartOpen } from '../../store/cart/cart.selector';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
-import { signOutUser } from '../../utils/firebase/firebase.utils';
+import { setIsProfileOpen } from '../../store/user/user.action';
 
 import {
   NavigationContainer,
   NavLinks,
   NavLink,
   LogoContainer,
+  Profile,
 } from './navigation.styles';
+import ProfileDropdown from '../../components/profile-dropdown/profile-dropdown.component';
+import Footer from '../footer/footer.component';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
-
+  const isProfileOpen = useSelector(selectIsProfileOpen);
+  const displayName = useSelector(selectDisplayName);
+  const toggleIsProfileOpen = () => dispatch(setIsProfileOpen(!isProfileOpen));
+  console.log(currentUser);
   return (
     <Fragment>
       <NavigationContainer>
@@ -30,18 +37,23 @@ const Navigation = () => {
         </LogoContainer>
         <NavLinks>
           <NavLink to='/shop'>SHOP</NavLink>
-          {currentUser ? (
-            <NavLink as='span' onClick={signOutUser}>
-              SIGN OUT
+          
+          {
+            currentUser ? (
+            <NavLink as='span' onClick={toggleIsProfileOpen}>
+              HELLO {displayName ? displayName.toUpperCase() : displayName}
             </NavLink>
-          ) : (
-            <NavLink to='/auth'>SIGN IN</NavLink>
-          )}
+            ) : (
+              <Profile onClick={toggleIsProfileOpen}>PROFILE</Profile>
+            )
+          }
+          { isProfileOpen && <ProfileDropdown/>}
           <CartIcon />
         </NavLinks>
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
+      <Footer/>
     </Fragment>
   );
 };

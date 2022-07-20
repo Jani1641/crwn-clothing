@@ -32,7 +32,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 0;
   border-bottom: 1px solid ${subColor};
-  margin: 25px 0;
+  margin: 25px 0px;
 
   &:focus {
     outline: none;

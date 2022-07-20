@@ -77,6 +77,15 @@ export const getCategoriesAndDocuments = async () => {
   // return categoryMap;
 };
 
+export const getUsers = async (email)=> {
+  const collectionRef = collection(db, 'users');
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  const users = querySnapshot.docs.map((docSnapShot)=> docSnapShot.data()).filter(user => user.email === email);
+  console.log(users);
+  return users[0];
+}
+
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}

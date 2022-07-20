@@ -2,13 +2,17 @@ import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-
+import { useDispatch } from 'react-redux/es/exports';
 import {
+  getUsers,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
 
 import { SignInContainer, ButtonsContainer } from './sign-in-form.styles';
+import { setDisplayName } from '../../store/user/user.action';
+import { fetchRecentItemsAsync } from '../../store/checkout/checkout.action';
+import { useNavigate } from 'react-router-dom';
 
 const defaultFormFields = {
   email: '',
@@ -18,7 +22,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -29,10 +34,22 @@ const SignInForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
+      debugger;
+      localStorage.setItem('email',email);
+      const user =  await getUsers(email);
+      dispatch(setDisplayName(user.displayName));
+      dispatch(fetchRecentItemsAsync(email))
+      
+      const queryParams = new URLSearchParams(window.location.search);
+      const redirect = queryParams.get('redirect');
+      if(redirect){
+        navigate(redirect);
+      }else{
+        navigate('/');
+      }
     } catch (error) {
       console.log('user sign in failed', error);
     }

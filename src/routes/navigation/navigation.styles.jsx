@@ -9,6 +9,10 @@ export const NavigationContainer = styled.div`
   margin-bottom: 25px;
 `;
 
+export const Profile = styled.div`
+  padding: 10px 15px;
+  cursor: pointer;
+`
 export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;

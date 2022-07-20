@@ -1,9 +1,9 @@
 
 import { selectCartItems,selectCartTotal } from '../../store/cart/cart.selector';
-import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { useSelector } from 'react-redux/es/exports';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
-
+import { selectCurrentUser } from '../../store/user/user.selector';
 import {
   CheckoutContainer,
   CheckoutHeader,
@@ -12,15 +12,17 @@ import {
 } from './checkout.styles';
 import Button from '../../components/button/button.component';
 import { useNavigate } from 'react-router-dom';
-import { deleteCartAsync } from '../../store/cart/cart.action';
-
 const Checkout = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal)
+  const currentUser = useSelector(selectCurrentUser);
   const CheckoutHandler = () =>{
-    deleteCartAsync();
+    if(currentUser==null){
+      navigate('/auth?redirect=/checkout');
+    }else{
+      navigate('/checkout')
+    }
   }
   return (
     <CheckoutContainer>
@@ -45,7 +47,7 @@ const Checkout = () => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>Total: &#x20b9;{cartTotal}</Total>
-      <Button>Checkout</Button>
+      <Button onClick={CheckoutHandler}>Checkout</Button>
     </CheckoutContainer>
   );
 };
