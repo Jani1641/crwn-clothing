@@ -30,7 +30,6 @@ const Navigation = () => {
   const isProfileOpen = useSelector(selectIsProfileOpen);
   const displayName = useSelector(selectDisplayName);
   const toggleIsProfileOpen = () => dispatch(setIsProfileOpen(!isProfileOpen));
-  console.log(currentUser);
   return (
     <Fragment>
       <NavigationContainer>

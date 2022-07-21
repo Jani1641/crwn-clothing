@@ -7,8 +7,11 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils';
-
+import { setDisplayName } from '../../store/user/user.action';
 import { SignUpContainer } from './sign-up-form.styles';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchRecentItemsAsync } from '../../store/checkout/checkout.action';
 
 const defaultFormFields = {
   displayName: '',
@@ -20,7 +23,8 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -40,7 +44,18 @@ const SignUpForm = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
+      dispatch(setDisplayName(displayName));
+      dispatch(fetchRecentItemsAsync(email))
+      
+      const queryParams = new URLSearchParams(window.location.search);
+      const redirect = queryParams.get('redirect');
+      if(redirect){
+        navigate(redirect);
+      }else{
+        navigate('/');
+      }
       resetFormFields();
+
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('Cannot create user, email already in use');

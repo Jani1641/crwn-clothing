@@ -33,7 +33,6 @@ const AddressContainer = () => {
         event.preventDefault();
 
         const address = `${firstName} ${lastName},${doorNo},${streetName},${cityName},${state}-${pinCode},${mobileNo}`;
-        console.log(address);
         dispatch(fetchAddressAsync(address,email));
         navigate('/checkout/complete');
     }

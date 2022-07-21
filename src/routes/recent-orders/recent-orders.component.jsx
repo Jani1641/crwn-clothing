@@ -7,8 +7,8 @@ import Spinner from "../../components/spinner/spinner.component"
 
 const RecentOrders = ()=> {
     const orders = useSelector(selectRecentItems);
-    const isLoading = useSelector(selectCheckoutIsLoading);
     console.log(orders);
+    const isLoading = useSelector(selectCheckoutIsLoading);
     return(
         <Fragment>
             <Title>RECENT ORDERS</Title>

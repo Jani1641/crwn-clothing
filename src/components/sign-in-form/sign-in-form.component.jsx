@@ -30,7 +30,18 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    const sol = await signInWithGooglePopup();
+    localStorage.setItem('email',sol.user.email);
+    dispatch(setDisplayName(sol.user.displayName));
+    dispatch(fetchRecentItemsAsync(sol.user.email));
+    const queryParams = new URLSearchParams(window.location.search);
+    const redirect = queryParams.get('redirect');
+    if(redirect){
+      navigate(redirect);
+    }else{
+      navigate('/');
+    }
+    return sol;
   };
 
   const handleSubmit = async (event) => {
@@ -38,7 +49,6 @@ const SignInForm = () => {
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
-      debugger;
       localStorage.setItem('email',email);
       const user =  await getUsers(email);
       dispatch(setDisplayName(user.displayName));

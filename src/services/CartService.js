@@ -9,7 +9,6 @@ class CartService{
     }
 
     addToCart = (orderId,productId,quantity) => {
-        console.log(`${CARTS_URL}/${orderId}/products?product_id=${productId}&quantity=${quantity}`)
         return axios.put(`${CARTS_URL}/${orderId}/products?product_id=${productId}&quantity=${quantity}`)
     }
 

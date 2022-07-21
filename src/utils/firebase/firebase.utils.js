@@ -82,7 +82,6 @@ export const getUsers = async (email)=> {
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
   const users = querySnapshot.docs.map((docSnapShot)=> docSnapShot.data()).filter(user => user.email === email);
-  console.log(users);
   return users[0];
 }
 
